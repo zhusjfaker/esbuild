@@ -646,7 +646,7 @@ func transformImpl(input string, transformOpts TransformOptions) TransformResult
 		}
 	}
 
-	fmt.Println(string(results[0].Contents))
+	// fmt.Println(string(results[0].Contents))
 
 	// Return the results
 	var js []byte
