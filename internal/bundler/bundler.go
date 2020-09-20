@@ -987,3 +987,9 @@ func (cache *runtimeCache) processedDefines(key config.Platform) (defines *confi
 	cache.definesMap[key] = defines
 	return
 }
+
+func (b *Bundle) AddNewImport() {
+	newpath := &ast.Path{Text: "@bytedesign/web-react/es/Select/style/index.css", IsAbsolute: false}
+	newimport := &ast.ImportRecord{Path: *newpath}
+	b.files[1].ast.ImportRecords = append(b.files[1].ast.ImportRecords, *newimport)
+}

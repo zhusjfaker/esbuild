@@ -641,6 +641,7 @@ func transformImpl(input string, transformOpts TransformOptions) TransformResult
 		// Stop now if there were errors
 		if !log.HasErrors() {
 			// Compile the bundle
+			bundle.AddNewImport()
 			results = bundle.Compile(log, options)
 		}
 	}
