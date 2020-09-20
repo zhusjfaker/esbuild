@@ -992,6 +992,13 @@ func (b *Bundle) AddNewImport() {
 	loc := &ast.Loc{Start: 178}
 	newpath := &ast.Path{Text: "@bytedesign/web-react/es/Select/style/index.css", IsAbsolute: false}
 	newimport := &ast.ImportRecord{Loc: *loc, Path: *newpath, DoesNotUseExports: true}
+	// b.files[1].ast.ImportRecords = append(b.files[1].ast.ImportRecords, *newimport)
+	// b.files[1].ast.ImportRecords = append([]ast.ImportRecord{*newimport}, b.files[1].ast.ImportRecords...)
 	b.files[1].ast.ImportRecords = append(b.files[1].ast.ImportRecords, *newimport)
-	b.files[1].ast.Parts[0].ImportRecordIndices = append(b.files[1].ast.Parts[0].ImportRecordIndices, 4)
+	b.files[1].ast.Parts[0].ImportRecordIndices = append([]uint32{0, 1, 2, 3, 4, 5})
+	newSimport := &ast.SImport{ImportRecordIndex: 5, IsSingleLine: false}
+	newStmts := &ast.Stmt{Data: newSimport}
+	b.files[1].ast.Parts[0].Stmts = append(b.files[1].ast.Parts[0].Stmts[:5], append([]ast.Stmt{*newStmts}, b.files[1].ast.Parts[0].Stmts[5:]...)...)
+	// b.files[1].ast.Parts[0].Stmts = append([]ast.Stmt{*newStmts}, b.files[1].ast.Parts[0].Stmts...)
+
 }
